@@ -18,19 +18,28 @@ interface Expense {
 
 export const FinanceDashboard = () => {
   const [expenses, setExpenses] = useState<Expense[]>([]);
+  const [accountBalance, setAccountBalance] = useState<number>(10000); // Default balance
 
-  // Load expenses from localStorage on component mount
+  // Load expenses and balance from localStorage on component mount
   useEffect(() => {
     const savedExpenses = localStorage.getItem('expenses');
+    const savedBalance = localStorage.getItem('accountBalance');
     if (savedExpenses) {
       setExpenses(JSON.parse(savedExpenses));
     }
+    if (savedBalance) {
+      setAccountBalance(parseFloat(savedBalance));
+    }
   }, []);
 
-  // Save expenses to localStorage whenever expenses change
+  // Save expenses and balance to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem('expenses', JSON.stringify(expenses));
   }, [expenses]);
+
+  useEffect(() => {
+    localStorage.setItem('accountBalance', accountBalance.toString());
+  }, [accountBalance]);
 
   const addExpense = (expense: Expense) => {
     setExpenses(prev => [expense, ...prev]);
@@ -48,6 +57,7 @@ export const FinanceDashboard = () => {
   });
 
   const monthlyTotal = monthlyExpenses.reduce((sum, expense) => sum + expense.amount, 0);
+  const remainingBalance = accountBalance - totalSpent;
 
   return (
     <div className="min-h-screen bg-gradient-background">
@@ -71,7 +81,7 @@ export const FinanceDashboard = () => {
         </div>
 
         {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           <Card className="shadow-glass border-white/20 bg-white/95 backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Total Spent</CardTitle>
@@ -115,6 +125,19 @@ export const FinanceDashboard = () => {
                 ₹{expenses.length > 0 ? (totalSpent / expenses.length).toFixed(2) : '0.00'}
               </div>
               <p className="text-xs text-muted-foreground">Average amount</p>
+            </CardContent>
+          </Card>
+
+          <Card className="shadow-glass border-white/20 bg-white/95 backdrop-blur-sm">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Balance Left</CardTitle>
+              <DollarSign className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className={`text-2xl font-bold ${remainingBalance >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                ₹{remainingBalance.toFixed(2)}
+              </div>
+              <p className="text-xs text-muted-foreground">Remaining in account</p>
             </CardContent>
           </Card>
         </div>
