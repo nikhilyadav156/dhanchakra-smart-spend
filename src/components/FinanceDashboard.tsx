@@ -6,6 +6,7 @@ import { SavingsGoal } from "@/components/SavingsGoal";
 import { AIInsights } from "@/components/AIInsights";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TrendingUp, DollarSign, Calendar, Target } from "lucide-react";
+import dhanchakraLogo from "@/assets/dhanchakra-logo.png";
 
 interface Expense {
   id: string;
@@ -53,9 +54,16 @@ export const FinanceDashboard = () => {
       <div className="container mx-auto px-4 py-8 space-y-8">
         {/* Header */}
         <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-            AI-Powered Finance Tracker
-          </h1>
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <img 
+              src={dhanchakraLogo} 
+              alt="Dhanchakra Logo" 
+              className="w-16 h-16 object-contain"
+            />
+            <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+              Dhanchakra
+            </h1>
+          </div>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Track your expenses, visualize spending patterns, and get intelligent insights 
             to achieve your financial goals with confidence.
@@ -70,7 +78,7 @@ export const FinanceDashboard = () => {
               <DollarSign className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-primary">${totalSpent.toFixed(2)}</div>
+              <div className="text-2xl font-bold text-primary">₹{totalSpent.toFixed(2)}</div>
               <p className="text-xs text-muted-foreground">All time</p>
             </CardContent>
           </Card>
@@ -81,7 +89,7 @@ export const FinanceDashboard = () => {
               <Calendar className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-foreground">${monthlyTotal.toFixed(2)}</div>
+              <div className="text-2xl font-bold text-foreground">₹{monthlyTotal.toFixed(2)}</div>
               <p className="text-xs text-muted-foreground">{currentMonth}</p>
             </CardContent>
           </Card>
@@ -104,7 +112,7 @@ export const FinanceDashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-foreground">
-                ${expenses.length > 0 ? (totalSpent / expenses.length).toFixed(2) : '0.00'}
+                ₹{expenses.length > 0 ? (totalSpent / expenses.length).toFixed(2) : '0.00'}
               </div>
               <p className="text-xs text-muted-foreground">Average amount</p>
             </CardContent>

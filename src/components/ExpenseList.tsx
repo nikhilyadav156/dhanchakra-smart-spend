@@ -57,7 +57,7 @@ export const ExpenseList = ({ expenses }: ExpenseListProps) => {
                 >
                   <div className="flex items-center justify-between mb-2">
                     <span className="font-semibold text-lg text-foreground">
-                      ${expense.amount.toFixed(2)}
+                      ₹{expense.amount.toFixed(2)}
                     </span>
                     <Badge className={getCategoryColor(expense.category)}>
                       <Tag className="h-3 w-3 mr-1" />

@@ -68,7 +68,7 @@ export const SavingsGoal = ({ totalSpent }: SavingsGoalProps) => {
         {isEditing ? (
           <div className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="goal">Monthly Goal ($)</Label>
+              <Label htmlFor="goal">Monthly Goal (₹)</Label>
               <Input
                 id="goal"
                 type="number"
@@ -97,12 +97,12 @@ export const SavingsGoal = ({ totalSpent }: SavingsGoalProps) => {
             <div className="grid grid-cols-3 gap-4 text-center">
               <div className="space-y-1">
                 <p className="text-sm text-muted-foreground">Goal</p>
-                <p className="text-2xl font-bold text-primary">${goal.toFixed(2)}</p>
+                <p className="text-2xl font-bold text-primary">₹{goal.toFixed(2)}</p>
               </div>
               <div className="space-y-1">
                 <p className="text-sm text-muted-foreground">Spent</p>
                 <p className={`text-2xl font-bold ${isOverBudget ? 'text-destructive' : 'text-foreground'}`}>
-                  ${totalSpent.toFixed(2)}
+                  ₹{totalSpent.toFixed(2)}
                 </p>
               </div>
               <div className="space-y-1">
@@ -110,7 +110,7 @@ export const SavingsGoal = ({ totalSpent }: SavingsGoalProps) => {
                   {isOverBudget ? 'Over Budget' : 'Remaining'}
                 </p>
                 <p className={`text-2xl font-bold ${isOverBudget ? 'text-destructive' : 'text-success'}`}>
-                  ${Math.abs(remaining).toFixed(2)}
+                  ₹{Math.abs(remaining).toFixed(2)}
                 </p>
               </div>
             </div>
@@ -141,8 +141,8 @@ export const SavingsGoal = ({ totalSpent }: SavingsGoalProps) => {
               </div>
               <p className={`text-sm ${isOverBudget ? 'text-red-700' : 'text-green-700'}`}>
                 {isOverBudget 
-                  ? `You've exceeded your monthly goal by $${Math.abs(remaining).toFixed(2)}. Consider reviewing your spending habits.`
-                  : `Great job! You have $${remaining.toFixed(2)} left in your budget this month.`
+                  ? `You've exceeded your monthly goal by ₹${Math.abs(remaining).toFixed(2)}. Consider reviewing your spending habits.`
+                  : `Great job! You have ₹${remaining.toFixed(2)} left in your budget this month.`
                 }
               </p>
             </div>

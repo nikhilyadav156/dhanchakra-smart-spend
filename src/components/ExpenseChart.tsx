@@ -91,7 +91,7 @@ export const ExpenseChart = ({ expenses }: ExpenseChartProps) => {
             Spending by Category
           </CardTitle>
           <p className="text-sm text-muted-foreground">
-            Total: ${totalSpent.toFixed(2)}
+            Total: ₹{totalSpent.toFixed(2)}
           </p>
         </CardHeader>
         <CardContent>
@@ -104,14 +104,14 @@ export const ExpenseChart = ({ expenses }: ExpenseChartProps) => {
                 outerRadius={100}
                 fill="#8884d8"
                 dataKey="amount"
-                label={({ category, amount }) => `${category}: $${amount.toFixed(2)}`}
+                label={({ category, amount }) => `${category}: ₹${amount.toFixed(2)}`}
                 labelLine={false}
               >
                 {categoryData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
-              <Tooltip formatter={(value: number) => [`$${value.toFixed(2)}`, 'Amount']} />
+              <Tooltip formatter={(value: number) => [`₹${value.toFixed(2)}`, 'Amount']} />
             </PieChart>
           </ResponsiveContainer>
         </CardContent>
@@ -135,7 +135,7 @@ export const ExpenseChart = ({ expenses }: ExpenseChartProps) => {
                 height={60}
               />
               <YAxis tick={{ fontSize: 12 }} />
-              <Tooltip formatter={(value: number) => [`$${value.toFixed(2)}`, 'Amount']} />
+              <Tooltip formatter={(value: number) => [`₹${value.toFixed(2)}`, 'Amount']} />
               <Legend />
               <Bar dataKey="amount" fill="#10b981" name="Weekly Spending" />
             </BarChart>

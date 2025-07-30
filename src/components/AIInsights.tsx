@@ -65,7 +65,7 @@ export const AIInsights = ({ expenses, totalSpent, savingsGoal }: AIInsightsProp
         type: 'warning',
         icon: AlertTriangle,
         title: 'Approaching Budget Limit',
-        message: `You've used ${budgetProgress.toFixed(1)}% of your monthly budget. Only $${remainingBudget.toFixed(2)} remaining.`,
+        message: `You've used ${budgetProgress.toFixed(1)}% of your monthly budget. Only ₹${remainingBudget.toFixed(2)} remaining.`,
         tip: 'Focus on essential expenses only for the rest of the month.'
       });
     } else if (budgetProgress <= 60) {
@@ -86,7 +86,7 @@ export const AIInsights = ({ expenses, totalSpent, savingsGoal }: AIInsightsProp
           type: 'tip',
           icon: Lightbulb,
           title: 'Small Purchase Pattern',
-          message: `Your average transaction is $${avgTransaction.toFixed(2)}. Small purchases can be budget-friendly but watch for accumulation.`,
+          message: `Your average transaction is ₹${avgTransaction.toFixed(2)}. Small purchases can be budget-friendly but watch for accumulation.`,
           tip: 'Consider using the 50/30/20 rule: 50% needs, 30% wants, 20% savings.'
         });
       }
